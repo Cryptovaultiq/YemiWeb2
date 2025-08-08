@@ -19,22 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Show page by ID
+    // Show page by ID and update URL
     function showPage(pageId) {
         pages.forEach(page => page.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
+        history.pushState(null, null, `#${pageId}`);
     }
 
-    // Smooth scroll for navbar links
+    // Handle initial page load based on URL hash
+    window.addEventListener('load', () => {
+        const hash = window.location.hash.substring(1) || 'home';
+        showPage(hash);
+    });
+
+    // Handle navbar and card navigation with URL update
     document.querySelectorAll('.nav-menu a').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = anchor.getAttribute('href').substring(1);
-            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            if (targetId === 'connect-wallet') {
+                showPage(targetId);
+            } else {
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 
-    // Handle option card buttons to navigate to Page 2
+    // Handle option card buttons to navigate to Page 2 with URL update
     connectButtons.forEach(button => {
         button.addEventListener('click', () => {
             console.log('Card button clicked:', button.getAttribute('data-option'));
@@ -42,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle wallet selection and Connect button on Page 2
+    // Handle wallet selection and Connect button on Page 2 with URL update
     walletSelect.addEventListener('change', () => {
         console.log('Wallet selected:', walletSelect.value);
         connectButton.disabled = !walletSelect.value;
@@ -52,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Connect button clicked');
         if (walletSelect.value) {
             showPage('connect-result');
-            connectionMessage.textContent = 'Error connecting';
         }
     });
 
@@ -63,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         connectManuallyButton.style.display = 'none';
     });
 
-    // Handle form submission on Page 3
+    // Handle form submission on Page 3 with URL update
     messageForm.addEventListener('submit', (e) => {
         e.preventDefault();
         console.log('Submitting form with input:', userInput.value);
@@ -108,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // CoinMarketCap Live Updates with Color Coding
     async function updateCoinmarketcap() {
         try {
-            const apiKey = '5f070f3b-699f-4682-8b76-af9a8e23e61c'; // Replace with your verified key
+            const apiKey = 'YOUR_ACTUAL_API_KEY'; // Replace with your verified key
             const response = await fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
                 headers: {
                     'X-CMC_PRO_API_KEY': apiKey,
@@ -143,4 +153,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Initial page load
-showPage('home');
+showPage(window.location.hash.substring(1) || 'home');
