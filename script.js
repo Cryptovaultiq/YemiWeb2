@@ -56,12 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         showPage(hash);
     });
 
-    // Handle navbar and card navigation with URL update
+    // Handle navbar navigation with URL update
     document.querySelectorAll('.nav-menu a').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = anchor.getAttribute('href').substring(1);
-            if (targetId === 'connect-wallet') {
+            if (targetId === 'home') {
+                showPage('home'); // Always redirect to home page when "Home" is clicked
+            } else if (targetId === 'connect-wallet') {
                 showPage(targetId);
             } else {
                 document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
