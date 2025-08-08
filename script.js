@@ -19,11 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Show page by ID and update URL
+    // Show page by ID and update URL, toggle navbar/footer visibility
     function showPage(pageId) {
         pages.forEach(page => page.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         history.pushState(null, null, `#${pageId}`);
+
+        // Toggle hide-nav-footer class based on page
+        if (pageId === 'connect-wallet') {
+            document.body.classList.add('hide-nav-footer');
+        } else {
+            document.body.classList.remove('hide-nav-footer');
+        }
     }
 
     // Handle popstate event for back/forward navigation
