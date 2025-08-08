@@ -16,6 +16,11 @@ body {
     transition: all 0.3s ease;
 }
 
+body.hide-nav-footer .navbar,
+body.hide-nav-footer #contact {
+    display: none;
+}
+
 .navbar {
     background-color: #DC143C;
     padding: 1rem;
@@ -308,11 +313,6 @@ footer {
 }
 
 /* Page-specific styles */
-#connect-wallet.active ~ .navbar,
-#connect-wallet.active ~ #contact {
-    display: none;
-}
-
 #connect-result.active ~ .navbar,
 #connect-result.active ~ #contact {
     filter: blur(5px);
