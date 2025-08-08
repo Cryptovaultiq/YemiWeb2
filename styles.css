@@ -184,8 +184,8 @@ p {
     color: #fff;
     appearance: none;
     background-repeat: no-repeat;
-    background-position: 10px center;
-    padding-left: 40px;
+    background-position: 5px center;
+    padding-left: 30px;
 }
 
 #connect-wallet select option {
@@ -193,6 +193,7 @@ p {
     background-position: 5px center;
     padding-left: 30px;
     background-size: 20px 20px;
+    background-color: #333; /* Match select background */
 }
 
 #connect-wallet select option[value="metamask"] { background-image: url('/public/metamask.png'); }
@@ -272,6 +273,13 @@ footer {
     color: #fff;
     margin-top: 1rem;
     font-weight: 600;
+}
+
+#connectionMessage {
+    color: #ff0000; /* Red color for "Error connecting" */
+    text-align: center;
+    font-weight: bold;
+    margin: 1rem 0;
 }
 
 #barcodeContainer {
