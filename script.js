@@ -26,6 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
         history.pushState(null, null, `#${pageId}`);
     }
 
+    // Handle popstate event for back/forward navigation
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash.substring(1) || 'home';
+        showPage(hash);
+        if (hash === 'connect-wallet') {
+            connectButton.disabled = !walletSelect.value;
+            manualConnectSection.classList.add('hidden');
+            connectManuallyButton.style.display = 'block';
+        } else if (hash === 'connect-result') {
+            connectionMessage.textContent = 'Error connecting';
+            if (!manualConnectSection.classList.contains('hidden')) {
+                manualConnectSection.classList.add('hidden');
+                connectManuallyButton.style.display = 'block';
+            }
+        }
+    });
+
     // Handle initial page load based on URL hash
     window.addEventListener('load', () => {
         const hash = window.location.hash.substring(1) || 'home';
